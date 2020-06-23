@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CameraController : MonoBehaviour
 {
-    GameObject player;
+    public GameObject player;
     Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
-        //Playerを見つける
-        this.player = GameObject.Find("Player");
         //MainCameraの初期位置とPlayerの位置とのベクトルの差を求める
         offset = transform.position - player.transform.position;
     }

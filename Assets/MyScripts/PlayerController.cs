@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     bool isMove;
     public float twoHWADam;
     public float rLegDam;
+    bool isAttackDone;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +51,17 @@ public class PlayerController : MonoBehaviour
         //両手剣での攻撃モーション中
         if(info.IsName("2Hand-Sword-Attack2"))
         {
-            StartCoroutine(ColliderEnabled());
-             Debug.Log("Coroutine 開始");
-            twoHWA.GetComponent<CapsuleCollider>().enabled = true;
-            Debug.Log(twoHWA.GetComponent<CapsuleCollider>().enabled);
- 
+            // StartCoroutine(ColliderEnabled());
+            // Debug.Log("Coroutine 開始");
+            if(isAttackDone == false)
+            {
+                twoHWA.GetComponent<CapsuleCollider>().enabled = true;
+
+            }
+            else
+            {
+                twoHWA.GetComponent<CapsuleCollider>().enabled = false;
+            }
         }
         else
         {
@@ -190,14 +197,15 @@ public class PlayerController : MonoBehaviour
         twoHWA.SetActive(!twoHWA.activeSelf);
         twoHWU.SetActive(!twoHWU.activeSelf);
     }
-    IEnumerator ColliderEnabled()
+    // IEnumerator ColliderEnabled()
+    // {
+    //     yield return new WaitForSeconds(0.4f);
+    //     twoHWA.GetComponent<CapsuleCollider>().enabled = false;
+    //     // Debug.Log(twoHWA.GetComponent<CapsuleCollider>().enabled);  
+    // }
+    public void AttackDone()
     {
-        yield return new WaitForSeconds(0.4f);
-        twoHWA.GetComponent<CapsuleCollider>().enabled = false;
-        // Debug.Log(twoHWA.GetComponent<CapsuleCollider>().enabled);  
-    }
-    public void Hit()        // ヒット時のアニメーションイベント（今のところからっぽ。ないとエラーが出る）
-    {
+        isAttackDone = true;
     }
     // void Sample()
     // {

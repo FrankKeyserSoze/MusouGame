@@ -7720,7 +7720,6 @@ GameObject:
   - component: {fileID: 657485380896014936}
   - component: {fileID: 665484237430497838}
   - component: {fileID: 679708804692531097}
-  - component: {fileID: 679708804692531098}
   - component: {fileID: 679708804692531099}
   m_Layer: 0
   m_Name: 2HandedWeponA
@@ -7743,18 +7742,6 @@ CapsuleCollider:
   m_Height: 1.0722718
   m_Direction: 2
   m_Center: {x: 0.0031321447, y: 0.0010863477, z: 0.6965978}
---- !u!114 &679708804692531098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679708804692531096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069d7a81225233a458f18ee884c300c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &679708804692531099
 Rigidbody:
   m_ObjectHideFlags: 0

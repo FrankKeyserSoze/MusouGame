@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class BoneEnemyController : MonoBehaviour
 {
-    public GameObject player;
     float boneHp = 100f;
-    public float twoHWADam;
-    public float rLegDam;
-    int twoHWACriticalRate;
-    public float twoHWACriticalDam;
-    int rLegCriticalRate;
-    public float rLegCriticalDam;
     Animator animator;
+    PlayerController playerController;
+    int damage;
 
     
     // Start is called before the first frame update
@@ -29,33 +24,37 @@ public class BoneEnemyController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //ぶつかった相手が両手剣なら
         if(other.gameObject.CompareTag("2HWATag"))
         {
-            twoHWACriticalRate = Random.Range(1,11);
-            if(twoHWACriticalRate <= 3)
+            //playerControllerが空なら
+            if(playerController == null)
             {
-                twoHWADam *= twoHWACriticalDam;
+                //WeaponControllerを介してplayerControllerを取得
+                playerController = other.gameObject.GetComponent<WeaponController>().playerController;
             }
-            else
-            {
-                twoHWADam = 30f;
-            }
-            boneHp -= twoHWADam;
+            
+            damage = playerController.SetTwoHWADamage();
+
+            boneHp -= damage;
+
+            animator.SetTrigger("HitTrigger");
         }
+        
+        //ぶつかった相手が右足なら
         if(other.gameObject.CompareTag("RLegTag"))
         {
-            rLegCriticalRate = Random.Range(1,11);
-            if(rLegCriticalRate <= 5)
+            //playerControllerが空なら
+            if(playerController == null)
             {
-                rLegDam *= rLegCriticalDam;
+                //WeaponControllerを介してplayerControllerを取得
+               playerController = other.gameObject.GetComponent<WeaponController>().playerController;
             }
-            else
-            {
-                rLegDam = 15f;
-            }
-            boneHp -= rLegDam;
-            
-            animator.SetTrigger("HitTrigger");
+
+            damage = playerController.SetTwoHWADamage();
+
+            boneHp -= damage;
+
         }
     }
 }

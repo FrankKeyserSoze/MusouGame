@@ -21,12 +21,24 @@ public class PlayerController : MonoBehaviour
     public GameObject rLeg;
     bool isAttackDone;
     bool isArmed;
+    public int twoHWADam;
+    public int rLegDam;
+    public float twoHWACriticalDam;
+    public float rLegCriticalDam;
+    int damage;
+    CapsuleCollider capsuleCollider;
+
+    
   
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        if(capsuleCollider == null)
+        {
+           twoHWA.TryGetComponent<CapsuleCollider>(out capsuleCollider);
+        }
         twoHWA.SetActive(false);
     }
     // Update is called once per frame
@@ -54,18 +66,19 @@ public class PlayerController : MonoBehaviour
         
             if(isAttackDone == false)
             {
-                twoHWA.GetComponent<CapsuleCollider>().enabled = true;
+                capsuleCollider.enabled = true;
             }
             else
             {
-                twoHWA.GetComponent<CapsuleCollider>().enabled = false;
+                capsuleCollider.enabled = false;
             }
         }
         else
         {
-            twoHWA.GetComponent<CapsuleCollider>().enabled = false;
+            capsuleCollider.enabled = false;
             isAttackDone = false;
         }
+
         //キックでの攻撃モーション中
         if(info.IsName("Hikick"))
         {
@@ -121,9 +134,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
-        Debug.Log(isArmed);
-
     }
     
     
@@ -135,10 +145,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        //武装時
         if(isArmed == true)
         {
             maxWalkSpeed = 1.5f;
         }
+        //非武装時
         else
         {
             maxWalkSpeed = 2.0f;
@@ -201,6 +213,41 @@ public class PlayerController : MonoBehaviour
     {
         isAttackDone = true;
     }
+
+    //両手剣ダメージ
+    public int SetTwoHWADamage()
+    {
+        int twoHWACriticalRate = Random.Range(1,11);
+        if(twoHWACriticalRate <= 3)
+        {
+            //四捨五入
+            damage = Mathf.CeilToInt(twoHWADam * twoHWACriticalDam);
+        }
+        else
+        {
+            damage = twoHWADam;
+        }
+        return damage;
+    }
+
+    //右足ダメージ
+    public int SetRLegDamage()
+    {
+        int rLegCriticalRate = Random.Range(1,11);
+        if(rLegCriticalRate <= 5)
+        {
+            damage = Mathf.CeilToInt(rLegDam * rLegCriticalDam);
+        }
+        else
+        {
+            damage = rLegDam;
+        }
+        return damage;
+    } 
+
+    
+        
+
 
    
     

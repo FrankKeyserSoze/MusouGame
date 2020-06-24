@@ -4908,6 +4908,10 @@ MonoBehaviour:
   twoHWU: {fileID: 3720015585099376901}
   twoHWA: {fileID: 679708804692531096}
   rLeg: {fileID: 602763245}
+  twoHWADam: 0
+  rLegDam: 0
+  twoHWACriticalDam: 0
+  rLegCriticalDam: 0
 --- !u!1 &602762793
 GameObject:
   m_ObjectHideFlags: 0
@@ -7132,6 +7136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 602600333}
   - component: {fileID: 602763246}
+  - component: {fileID: 602763248}
   m_Layer: 0
   m_Name: Character1_RightLeg
   m_TagString: RLegTag
@@ -7169,6 +7174,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &602763248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602763245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c6e3f7ad762044bef08589b1d5f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  player: {fileID: 602762791}
 --- !u!1 &602763249
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,11 +7456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6c0a6a6d1bc91479f96f1f3c39ae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 602762791}
-  twoHWADam: 30
-  rLegDam: 15
-  twoHWACriticalDam: 1.3
-  rLegCriticalDam: 3
 --- !u!1 &991069045
 GameObject:
   m_ObjectHideFlags: 0
@@ -7469,7 +7483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991069045}
   m_LocalRotation: {x: 0.145023, y: -0, z: -0, w: 0.9894283}
-  m_LocalPosition: {x: 0, y: 2.84, z: -4.36}
+  m_LocalPosition: {x: 0, y: 2.55, z: -3.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7736,6 +7750,7 @@ GameObject:
   - component: {fileID: 665484237430497838}
   - component: {fileID: 679708804692531097}
   - component: {fileID: 679708804692531099}
+  - component: {fileID: 679708804692531098}
   m_Layer: 0
   m_Name: 2HandedWeponA
   m_TagString: 2HWATag
@@ -7757,6 +7772,20 @@ CapsuleCollider:
   m_Height: 1.0722718
   m_Direction: 2
   m_Center: {x: 0.0031321447, y: 0.0010863477, z: 0.6965978}
+--- !u!114 &679708804692531098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679708804692531096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c6e3f7ad762044bef08589b1d5f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  player: {fileID: 602762791}
 --- !u!54 &679708804692531099
 Rigidbody:
   m_ObjectHideFlags: 0
